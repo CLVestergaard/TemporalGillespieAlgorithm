@@ -376,7 +376,6 @@ int main(int argc, char *argv[])
     // Write I_t to file:
     for(node_iterator=sumI_t.begin(); node_iterator!=sumI_t.end(); node_iterator++)
     {
-        std::cout << *node_iterator << "\t";
         output << *node_iterator << "\t";
     }
     output.close();
