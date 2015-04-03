@@ -186,7 +186,7 @@ int main(int argc, char *argv[])
     COUNTER outputTimeResolution = atoi(argv[7]); //output time-resolution
 
     // Open input file and load contact_lists:
-    sprintf(inputname,"../activityDrivenNetwork/%s.txt",datafile);
+    sprintf(inputname,"%s",datafile);
     CONTACTS_LIST contactListList=loadContactListList(inputname);
     // Check if length of contacts_list > 0 and end program if it is not:
     if(contactListList.size()==0){ std::cout << "Error! Dataset empty.\n"; return 0; }
