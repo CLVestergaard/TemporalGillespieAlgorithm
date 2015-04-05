@@ -391,7 +391,7 @@ int main(int argc, char *argv[])
     output.close();
     double t_write = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
 
-    std::cout << std::endl << "Gillespie-SIS-homogeneous: N=" << N << ", T=" << T_data << ", beta=" << beta << ", mu=" << mu << ", resolution = " << outputTimeResolution << std::endl;
+    std::cout << std::endl << "temporal Gillespie---homogeneous & Poissonian SIS: N=" << N << ", T=" << T_data << ", beta=" << beta << ", mu=" << mu << ", resolution = " << outputTimeResolution << std::endl;
     std::cout << "Simulation time: " << t_simu << ", Stopped: " << stopped << "/" << ensembleSize << std::endl;
     std::cout << "Writing to file: " << t_write << std::endl;
 
