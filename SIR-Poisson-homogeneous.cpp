@@ -106,7 +106,8 @@ CONTACTS_LIST loadContactListList(char *inputname)
         nodes.push_back(i);
         nodes.push_back(j);
     }
-    T_data=t+1; std::cout << "T=" << T_data << std::endl; //length of dataset
+    T_data=t+1; //length of dataset
+    std::cout << "T=" << T_data << std::endl;
     input.close();
     // Sort list and remove duplicates:
     std::sort(nodes.begin(),nodes.end());
@@ -361,10 +362,10 @@ int main(int argc, char *argv[])
                     }
                    break;
                 }
-                // Stop if max simulation time-steps has been reached:
+                // Read out I and R if t is divisible by outputTimeResolution
                 if(t % outputTimeResolution ==0)
                 {
-                    if(t>=T_simulation)
+                    if(t>=T_simulation) //stop if max simulation time-steps has been reached
                     {
                         break;
                     }
@@ -417,10 +418,10 @@ int main(int argc, char *argv[])
     output.close();
     double t_write = ( std::clock() - clockStart ) / (double) CLOCKS_PER_SEC;
 
-    std::cout << std::endl << "Gillespie---homogeneous: N=" << N << ", T=" << T_data << ", beta=" << beta << ", mu=" << mu;
+    std::cout << std::endl << "temporal Gillespie---homogeneous & Poissonian SIR: N=" << N << ", T=" << T_data << ", beta=" << beta << ", mu=" << mu;
     std::cout << ", output time-resolution = " << outputTimeResolution << std::endl;
-    std::cout << "Simulation time: " << t_simu << ", Stopped: " << stopped << "/" << ensembleSize << std::endl;
-    std::cout << "Writing to file: " << t_write << std::endl;
+    std::cout << "Simulation time: " << t_simu << "s, Stopped simulations: " << stopped << "/" << ensembleSize << std::endl;
+    std::cout << "Writing to file: " << t_write << "s" << std::endl;
 
     return 0;
 }
