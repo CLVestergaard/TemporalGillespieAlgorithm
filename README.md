@@ -15,5 +15,8 @@ The programs found here are:
 - SIS-Poisson-homogeneous.cpp : Constant-rate (Poissonian) SIS process in a homogeneous population (i.e., same infection/recovery rates for all nodes).
 - SIS-Poisson-heterogeneous.cpp : Constant-rate (Poissonian) SIS process in a hoterogeneous population (i.e., infection/recovery rates may differ between nodes).
 
+Sample data are found in:
+- sampleData.txt : Activity-driven network consisting of 100 nodes simulated for 20,000 time-steps.
+
 The Pseudo-Random Number Generator (Mersenne Twister 19937) is initialized with the following seed: 9071982. It can be changed inline. Note however that simulations performed with randomly chosen different seeds are not guaranteed to be (pseudo)independent.
 
