@@ -10,10 +10,10 @@ All programs simulates independent realizations of the given contagion process o
 
 The programs found here are:
 - SIR-Poisson-homogeneous.cpp : Constant-rate (Poissonian) SIR process in a homogeneous population (i.e., same infection/recovery rates for all nodes).
-- SIR-Poisson-heterogeneous.cpp : Constant-rate (Poissonian) SIR process in a hoterogeneous population (i.e., infection/recovery rates may differ between nodes).
+- SIR-Poisson-heterogeneous.cpp : Constant-rate (Poissonian) SIR process in a heterogeneous population (i.e., infection/recovery rates may differ between nodes).
 - SIR-nonMarkovian.cpp : Non-Markovian SIR process with Weibull distributed (https://en.wikipedia.org/wiki/Weibull_distribution) recovery times of individual nodes.
 - SIS-Poisson-homogeneous.cpp : Constant-rate (Poissonian) SIS process in a homogeneous population (i.e., same infection/recovery rates for all nodes).
-- SIS-Poisson-heterogeneous.cpp : Constant-rate (Poissonian) SIS process in a hoterogeneous population (i.e., infection/recovery rates may differ between nodes).
+- SIS-Poisson-heterogeneous.cpp : Constant-rate (Poissonian) SIS process in a heterogeneous population (i.e., infection/recovery rates may differ between nodes).
 
 Sample data are found in:
 - sampleData.txt : Activity-driven network consisting of 100 nodes simulated for 20,000 time-steps.
