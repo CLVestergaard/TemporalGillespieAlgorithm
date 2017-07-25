@@ -1,7 +1,7 @@
 # TemporalGillespieAlgorithm
-Important note: The C++ code only works with time-step dt set to 1. Temporal network data recorded with dt different from one, should be normalized such that dt->1 and beta and mu should be renormalized accordingly, i.e. beta->beta\*dt and mu->mu\*dt.
-
 C++ code for implementations of the temporal Gillespie algorithm for simulation of epidemic processes on time-varying networks. The algorithm is described in the paper: C.L. Vestergaard & M. Génois. "Temporal Gillespie algorithm: Fast simulation of contagion processes on time-varying networks". PLoS Computational Biology (2015) 11, e1004579 (http://arxiv.org/abs/1504.01298).
+
+_Important note: The C++ code only works with time-step dt set to 1. Temporal network data recorded with dt different from one, should be normalized such that dt->1 and beta and mu should be renormalized accordingly, i.e. beta->beta\*dt and mu->mu\*dt._
 
 The programs need the boost library installed (http://www.boost.org/). 
 Compile with the -O2 option for optimal speed, e.g., using g++ the code may be compiled as:
@@ -20,6 +20,9 @@ The programs found here are:
 
 Sample data are found in:
 - sampleData.txt : Activity-driven network consisting of 100 nodes simulated for 20,000 time-steps.
+
+Empirical data of face-to-face interactions collected by the SocioPatterns collaboration can be found at:
+- http://www.sociopatterns.org/datasets/
 
 The Pseudo-Random Number Generator (Mersenne Twister 19937) is initialized with the following seed: 9071982. It can be changed inline. Note however that simulations performed with randomly chosen different seeds are not guaranteed to be (pseudo)independent.
 
