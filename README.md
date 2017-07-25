@@ -1,4 +1,6 @@
 # TemporalGillespieAlgorithm
+Important note: The C++ code only works with time-step dt set to 1. Temporal network data recorded with dt different from one, should be normalized such that dt->1 and beta and mu should be renormalized accordingly, i.e. beta->beta\*dt and mu->mu\*dt.
+
 C++ code for implementations of the temporal Gillespie algorithm for simulation of epidemic processes on time-varying networks. The algorithm is described in the paper: C.L. Vestergaard & M. Génois. "Temporal Gillespie algorithm: Fast simulation of contagion processes on time-varying networks". PLoS Computational Biology (2015) 11, e1004579 (http://arxiv.org/abs/1504.01298).
 
 The programs need the boost library installed (http://www.boost.org/). 
