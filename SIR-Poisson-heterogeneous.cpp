@@ -382,6 +382,7 @@ int main(int argc, char *argv[])
                         // Draw new renormalized waiting time:
                         tau=randexp(1);
                     }
+                    tau -= xi*Lambda;
                     // Update list of number of infected nodes:
                     I=infected.size();
                 }
