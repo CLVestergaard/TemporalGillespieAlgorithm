@@ -115,7 +115,8 @@ CONTACTS_LIST loadContactListList(char *inputname)
         nodes.push_back(i);
         nodes.push_back(j);
     }
-    T_data=t+1; std::cout << "T=" << T_data << std::endl;
+    T_data=t/dt+1; //length of dataset
+    std::cout << "\nT=" << T_data << std::endl;
     input.close();
     // Sort list and remove duplicates:
     std::sort(nodes.begin(),nodes.end());
@@ -124,18 +125,17 @@ CONTACTS_LIST loadContactListList(char *inputname)
     N=nodes.size(); //number of unique nodes (network size)
     // List for redefining node IDs:
     NODES nodeIDs(nodes[nodes.size()-1]+1);
-    std::cout << std::endl;
-    for(int n=0; n<N; n++)
+    for(COUNTER n=0; n<N; n++)
     {
         nodeIDs[nodes[n]]=n;
     }
 
-    // Read first line of inputfile as list of characters and get t,i,j:
+    // Read first line of inputfile and get t,i,j:
     input.open(inputname);
     getline(input,line);
     input>>t>>i>>j;
     // Loop over t<T and create list of contact lists:
-    for(COUNTER tt=0; tt<T_data; tt+=dt)
+    for(COUNTER tt=0; tt<T_data*dt; tt+=dt)
     {
         while(t==tt && !input.eof())
         {
@@ -150,7 +150,7 @@ CONTACTS_LIST loadContactListList(char *inputname)
     }
     input.close();
 
-    std::cout << std::endl << N << " nodes. Construction time: " << ( clock() - clockStart ) / (double) CLOCKS_PER_SEC << " s\n\n";
+    std::cout << N << " nodes. Construction time: " << ( clock() - clockStart ) / (double) CLOCKS_PER_SEC << " s\n\n";
 
     return contactListList;
 }
@@ -370,6 +370,7 @@ int main(int argc, char *argv[])
                         // Draw new renormalized waiting time:
                         tau=randexp(1);
                     }
+                    tau-=xi*Lambda;
                     // Update list of number of infected nodes:
                     I=infected.size();
                 }

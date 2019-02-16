@@ -106,7 +106,7 @@ CONTACTS_LIST loadContactListList(char *inputname)
         nodes.push_back(i);
         nodes.push_back(j);
     }
-    T_data=t+1; std::cout << "T=" << T_data << std::endl;
+    T_data=t/dt+1; std::cout << "T=" << T_data << std::endl;
     input.close();
     // Sort list and remove duplicates:
     std::sort(nodes.begin(),nodes.end());
@@ -126,7 +126,7 @@ CONTACTS_LIST loadContactListList(char *inputname)
     getline(input,line);
     input>>t>>i>>j;
     // Loop over t<T and create list of contact lists:
-    for(COUNTER tt=0; tt<T_data; tt+=dt)
+    for(COUNTER tt=0; tt<T_data*dt; tt+=dt)
     {
         while(t==tt && !input.eof())
         {
@@ -337,6 +337,7 @@ int main(int argc, char *argv[])
                         // Draw new renormalized waiting time:
                         tau=randexp(1);
                     }
+                    tau-=xi*Lambda;
                 }
                 // Stop if I=0:
                 if(I==0)
@@ -344,8 +345,8 @@ int main(int argc, char *argv[])
                     stopped++;
                     break;
                 }
-                // read out I and R if t is divisible by outputTimeResolution
-                if(t % outputTimeResolution ==0)
+                // read out I and R if t is divisible by outputTimeResolution:
+                if(t % outputTimeResolution == 0)
                 {
                     if(t>=T_simulation)
                     {
@@ -371,22 +372,22 @@ int main(int argc, char *argv[])
     start=std::clock();
 
     // Open output file:
-    sprintf(outputname,"sum(I_t)-%s,N=%u,dt=%u,T=%u,beta=%.*f,mu=%.*f,Q=%u,res=%u.txt",datafile,N,dt,T_simulation,betaprec,beta,muprec,mu,ensembleSize,outputTimeResolution);
+    sprintf(outputname,"avg(I_t)-%s,N=%u,dt=%u,T=%u,beta=%.*f,mu=%.*f,Q=%u,res=%u.txt",datafile,N,dt,T_simulation,betaprec,beta,muprec,mu,ensembleSize,outputTimeResolution);
     output.open(outputname);
     // Write avg(I_t) to file:
     for(node_iterator=sumI_t.begin(); node_iterator!=sumI_t.end(); node_iterator++)
     {
-        output << *node_iterator << "\t";
+        output << (double)*node_iterator/(double)ensembleSize << "\t";
     }
     output.close();
 
     // Open output file:
-    sprintf(outputname,"h(I)-%s,N=%u,dt=%u,T=%u,beta=%.*f,mu=%.*f,Q=%u,res=%u.txt",datafile,N,dt,T_simulation,betaprec,beta,muprec,mu,ensembleSize,outputTimeResolution);
+    sprintf(outputname,"p(I)-%s,N=%u,dt=%u,T=%u,beta=%.*f,mu=%.*f,Q=%u,res=%u.txt",datafile,N,dt,T_simulation,betaprec,beta,muprec,mu,ensembleSize,outputTimeResolution);
     output.open(outputname);
     // Write p(I) to file:
     for(node_iterator=hist_I.begin(); node_iterator!=hist_I.end(); node_iterator++)
     {
-        output << *node_iterator << "\t";
+        output << (double)*node_iterator/(double)ensembleSize << "\t";
     }
     output.close();
     double t_write = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;

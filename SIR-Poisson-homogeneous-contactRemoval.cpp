@@ -106,8 +106,7 @@ CONTACTS_LIST loadContactListList(char *inputname)
         nodes.push_back(i);
         nodes.push_back(j);
     }
-    T_data=t+1; //length of dataset
-    std::cout << "T=" << T_data << std::endl;
+    T_data=t/dt+1; std::cout << "T=" << T_data << std::endl;
     input.close();
     // Sort list and remove duplicates:
     std::sort(nodes.begin(),nodes.end());
@@ -117,17 +116,17 @@ CONTACTS_LIST loadContactListList(char *inputname)
     // List for redefining node IDs:
     NODES nodeIDs(nodes[nodes.size()-1]+1);
     std::cout << std::endl;
-    for(COUNTER n=0; n<N; n++)
+    for(int n=0; n<N; n++)
     {
         nodeIDs[nodes[n]]=n;
     }
 
-    // Read first line of inputfile and get t,i,j:
+    // Read first line of inputfile as list of characters and get t,i,j:
     input.open(inputname);
     getline(input,line);
     input>>t>>i>>j;
     // Loop over t<T and create list of contact lists:
-    for(COUNTER tt=0; tt<T_data; tt+=dt)
+    for(COUNTER tt=0; tt<T_data*dt; tt+=dt)
     {
         while(t==tt && !input.eof())
         {
@@ -365,6 +364,7 @@ int main(int argc, char *argv[])
                         // Draw new renormalized waiting time:
                         tau=randexp(1);
                     }
+                    tau-=xi*Lambda;
                 }
                 // Stop if I=0:
                 if(I==0)
